@@ -21,7 +21,6 @@ package net.arcaniax.buildersutilities;
 import io.papermc.lib.PaperLib;
 import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
 import net.arcaniax.buildersutilities.listeners.BlockBreakListener;
-import net.arcaniax.buildersutilities.listeners.BlockPhysicsListener;
 import net.arcaniax.buildersutilities.listeners.ExplosionListener;
 import net.arcaniax.buildersutilities.listeners.IronTrapdoorListener;
 import net.arcaniax.buildersutilities.listeners.LeafDecayListener;
@@ -42,6 +41,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.incendo.serverlib.ServerLib;
+import org.jetbrains.annotations.NotNull;
 
 public final class BuildersUtilities extends JavaPlugin {
 
@@ -85,7 +85,6 @@ public final class BuildersUtilities extends JavaPlugin {
         PaperLib.suggestPaper(this);
 
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
-        this.getServer().getPluginManager().registerEvents(new BlockPhysicsListener(), this);
         this.getServer().getPluginManager().registerEvents(new ExplosionListener(), this);
         this.getServer().getPluginManager().registerEvents(new IronTrapdoorListener(), this);
         this.getServer().getPluginManager().registerEvents(new LeafDecayListener(), this);
@@ -102,7 +101,7 @@ public final class BuildersUtilities extends JavaPlugin {
             @Override
             public boolean onCommand(
                     CommandSender commandSender, Command command, String s,
-                    String[] strings
+                    String @NotNull [] strings
             ) {
                 String[] commandArgs = new String[strings.length + 1];
                 commandArgs[0] = s;
@@ -117,7 +116,6 @@ public final class BuildersUtilities extends JavaPlugin {
         getCommand("banner").setExecutor(commandExecutor);
         getCommand("armorcolor").setExecutor(commandExecutor);
         getCommand("secretblocks").setExecutor(commandExecutor);
-        getCommand("blocks").setExecutor(commandExecutor);
         getCommand("n").setExecutor(commandExecutor);
         getCommand("nc").setExecutor(commandExecutor);
         getCommand("/cuboid").setExecutor(commandExecutor);
